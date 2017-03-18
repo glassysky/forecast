@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import getGeolocation from '../utils/getGeolocation';
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+    getGeolocation().then(location => console.log(location));
+  }
   render() {
     return (
       <div className="App">

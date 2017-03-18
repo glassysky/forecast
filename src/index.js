@@ -29,7 +29,7 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <div>
+      <div className="root-wrap">
         <Header />
         {routes.map((route, i) => (
           <RouteWithSubRoutes key={i} {...route} />
