@@ -10,6 +10,7 @@ import 'reset-css/reset.css';
 import reducers from './reducers/index';
 import routes from './routes';
 import RouteWithSubRoutes from './utils/RouteWithSubRoutes';
+import Header from './components/Header';
 import Navigator from './components/navigator';
 
 import './index.css';
@@ -29,6 +30,7 @@ ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <div>
+        <Header />
         {routes.map((route, i) => (
           <RouteWithSubRoutes key={i} {...route} />
         ))}

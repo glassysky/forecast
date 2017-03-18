@@ -1,0 +1,10 @@
+.header {
+  height: 4.4rem;
+  line-height: 4.4rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-align: center;
+  background-color: #222;
+  color: #FFF;
+  border: 0.1rem solid #333;
+}

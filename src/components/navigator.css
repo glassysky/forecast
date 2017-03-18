@@ -23,6 +23,10 @@
   color: #5D656B;
 }
 
+.navigator-wrap li a span {
+  margin-bottom: 0.1rem;
+}
+
 .fa {
   font-size: 2.5rem;
 }
