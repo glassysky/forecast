@@ -6,24 +6,24 @@ import Attraction from './scenes/Attraction';
 
 const routes = [
   {
-    path: '/',
+    path: '/forecast/',
     component: App,
     exact: true,
   },
   {
-    path: '/forecast',
+    path: '/forecast/forecast',
     component: Forecast,
   },
   {
-    path: '/life',
+    path: '/forecast/life',
     component: Life,
   },
   {
-    path: '/disaster',
+    path: '/forecast/disaster',
     component: Disaster,
   },
   {
-    path: '/attraction',
+    path: '/forecast/attraction',
     component: Attraction,
   },
 ];
