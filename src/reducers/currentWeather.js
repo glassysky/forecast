@@ -10,11 +10,9 @@ const initialState = {
 const currentWeather = (state = initialState, action) => {
   let data;
   switch (action.type) {
-    case 'CURRENT_WEATHER_REQUEST':
-      return Object.assign({}, state, {
-        
-      });
-    case 'CURRENT_WEATHER_RECEIVE':
+    case types.CURRENT_WEATHER_REQUEST:
+      return state;
+    case types.CURRENT_WEATHER_RECEIVE:
       data = action.data[0].now;
       return Object.assign({}, state, {
         APIstatus: action.data[0].status,

@@ -3,21 +3,7 @@ import { connect } from 'react-redux';
 import './App.css';
 import { setLocation } from '../actions/index';
 import getGeolocation from '../utils/getGeolocation';
-import Request from '../utils/request';
-import { heFengApiType } from '../constants/config';
 import fetchPost, { postType } from '../actions/network';
-
-// const request = new Request();
-// request.get({
-//   url: heFengApiType.currentWeather,
-//   data: {
-//     city: 'beijing',
-//   },
-// }, (res) => {
-//   console.log(res);
-// }, (error) => {
-//   console.log(error);
-// });
 
 const waitLocation = () => (
   <div className="waiting-wrap">
@@ -38,14 +24,16 @@ const waitWeather = () => (
 class App extends Component {
   componentDidMount() {
     if (!this.props.location) {
+      // get location
       getGeolocation()
       .then(
+        // store location
         (location) => {
-          const city = location.replace(/市/, '');
-          this.props.setLocation(city);
-          return city;
+          this.props.setLocation(location);
+          return location;
         },
       ).then(
+        // request weather
         city => this.props.postWeather({
           url: '/now',
           type: postType.CURRENT_WEATHER,
@@ -69,6 +57,7 @@ class App extends Component {
         <p className="App-intro">
           {`你的位置：${this.props.location}`}
           {this.props.temperature}
+          <i className="wi wi-night-sleet" />
         </p>
       </div>
     );

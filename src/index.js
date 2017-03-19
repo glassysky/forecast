@@ -18,14 +18,20 @@ import './index.css';
 
 const history = createHistory();
 const middleware = routerMiddleware(history);
-const logger = createLogger();
+
+const middleWares = [thunkMiddleware, middleware];
+
+if (process.env.NODE_ENV === 'development') {
+  const logger = createLogger();
+  middleWares.push(logger);
+}
 
 const store = createStore(
   combineReducers({
     ...reducers,
     router: routerReducer,
   }),
-  applyMiddleware(middleware, thunkMiddleware, logger),
+  applyMiddleware(...middleWares),
 );
 
 ReactDOM.render(

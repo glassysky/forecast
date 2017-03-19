@@ -11,7 +11,7 @@ const requestPosts = (info) => {
   switch (info.type) {
     case postType.CURRENT_WEATHER:
       return {
-
+        type: types.CURRENT_WEATHER_REQUEST,
       };
     default:
       return {
@@ -22,7 +22,7 @@ const requestPosts = (info) => {
 
 const receivePosts = (info, data) => {
   switch (info.type) {
-    case 'CURRENT_WEATHER':
+    case postType.CURRENT_WEATHER:
       return {
         type: types.CURRENT_WEATHER_RECEIVE,
         data,
@@ -36,6 +36,7 @@ const receivePosts = (info, data) => {
 
 const fetchPost = info =>
   (dispatch) => {
+    dispatch(requestPosts(info));
     if (!requestInstance) {
       requestInstance = new Request();
     }

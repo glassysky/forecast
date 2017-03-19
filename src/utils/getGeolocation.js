@@ -12,7 +12,7 @@ const getGeolocation = () =>
       const gc = new BMap.Geocoder();
       gc.getLocation(point, (rs) => {
         const addComp = rs.addressComponents;
-        resolve(addComp.city);
+        resolve(addComp.city.replace(/市/, ''));
       });
     };
 
