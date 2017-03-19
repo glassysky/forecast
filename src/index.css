@@ -1,6 +1,10 @@
 /*防止横竖屏转换时字体自适应*/
 html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 {-webkit-text-size-adjust:none;}
 
+html, body {
+  height: 100%;
+}
+
 html {
   font-size: 10px;
 }
@@ -13,8 +17,14 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+#root {
+  height: 100%;
+}
+
 .root-wrap {
-  margin-top: 4.4rem;
+  height: 100%;
+  box-sizing: border-box;  
+  padding: 4.5rem 0 4.3rem;
 }
 
 @media only screen and (-webkit-max-device-pixel-ratio: 2) {

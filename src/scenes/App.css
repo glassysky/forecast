@@ -18,7 +18,31 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
+.waiting-wrap {
+  position: absolute;
+  z-index: 999;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.waiting-wrap span {
+  font-size: 1.5rem;
+}
+
+.fa-spinner {
+  font-size: 2.5rem;
+  animation-duration: 1.4s;
+  animation-iteration-count: infinite;
+  animation-name: logo-spin;
+  animation-timing-function: linear;
+}
+
+@keyframes logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
