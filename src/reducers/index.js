@@ -1,6 +1,10 @@
-import { combineReducers } from 'redux';
 import common from './common';
+import currentWeather from './currentWeather';
 
-export default combineReducers({
+const reduxApp = {
   common,
-});
+  currentWeather,
+};
+
+export default reduxApp;
+

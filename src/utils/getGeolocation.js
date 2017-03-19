@@ -12,7 +12,7 @@ const getGeolocation = () =>
       const gc = new BMap.Geocoder();
       gc.getLocation(point, (rs) => {
         const addComp = rs.addressComponents;
-        resolve(`${addComp.province},${addComp.city},${addComp.district},${addComp.street},${addComp.streetNumber}`);
+        resolve(addComp.city);
       });
     };
 

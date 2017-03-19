@@ -1,14 +1,21 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import './App.css';
+
+import { setLocation } from '../actions/index';
 
 import getGeolocation from '../utils/getGeolocation';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    getGeolocation().then(location => console.log(location));
+  componentDidMount() {
+    getGeolocation().then(
+      location => this.props.setLocation(location),
+    );
   }
   render() {
+    if (!this.props.location) {
+      return (<div>wait</div>);
+    }
     return (
       <div className="App">
         <div className="App-header">
@@ -16,11 +23,27 @@ class App extends Component {
           <i className="fa fa-thermometer-full" aria-hidden="true" />
         </div>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          {`你的位置：${this.props.location}`}
         </p>
       </div>
     );
   }
 }
 
-export default App;
+App.propTypes = {
+  setLocation: PropTypes.func,
+  location: PropTypes.string,
+};
+
+const mapStateToProps = state => ({
+  location: state.common.location,
+});
+
+const mapDispatchToProps = dispatch => ({
+  setLocation: location => dispatch(setLocation(location)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(App);

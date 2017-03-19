@@ -14,6 +14,5 @@ module.exports = {
         "window": true,
         "document": true,
         "navigator": true,
-        "BMap": true,
     }
 };
