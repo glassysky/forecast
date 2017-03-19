@@ -7,6 +7,9 @@ const initialState = {
   temperature: '',
   windDir: '',
   windLevel: '',
+  humidity: '',
+  precipitation: '',
+  visibility: '',
 };
 
 const currentWeather = (state = initialState, action) => {
@@ -23,6 +26,9 @@ const currentWeather = (state = initialState, action) => {
         windDir: data.wind.dir,
         windLevel: data.wind.sc,
         temperature: data.tmp,
+        humidity: data.hum,
+        precipitation: data.pcpn,
+        visibility: data.vis,
       });
     default:
       return state;

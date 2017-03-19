@@ -107,6 +107,20 @@ class App extends Component {
             <span>{`${this.props.windDir} ${this.props.windLevel}级`}</span>
           </div>
         </div>
+        <div className="metro-wrap">
+          <div className="metro-item">
+            <p>相对湿度(%)</p>
+            <b>{this.props.humidity}</b>
+          </div>
+          <div className="metro-item">
+            <p>降水量(mm)</p>
+            <b>{this.props.precipitation}</b>
+          </div>
+          <div className="metro-item">
+            <p>能见度(km)</p>
+            <b>{this.props.visibility}</b>
+          </div>
+        </div>
       </div>
     );
   }
@@ -122,6 +136,9 @@ App.propTypes = {
   conditionCode: PropTypes.string,
   windDir: PropTypes.string,
   windLevel: PropTypes.string,
+  humidity: PropTypes.string,
+  precipitation: PropTypes.string,
+  visibility: PropTypes.string,
 };
 
 const mapStateToProps = state => ({
@@ -132,6 +149,9 @@ const mapStateToProps = state => ({
   conditionCode: state.currentWeather.conditionCode,
   windDir: state.currentWeather.windDir,
   windLevel: state.currentWeather.windLevel,
+  humidity: state.currentWeather.humidity,
+  precipitation: state.currentWeather.precipitation,
+  visibility: state.currentWeather.visibility,
 });
 
 const mapDispatchToProps = dispatch => ({

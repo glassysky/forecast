@@ -49,6 +49,9 @@
 .main-bar {
   display: flex;
   flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
 
 .main-bar .wi {
@@ -74,6 +77,30 @@
 
 .weather-info span {
   font-size: 1.8rem;
+}
+
+.metro-wrap {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 2rem;
+  margin-bottom: 2rem;
+}
+
+.metro-wrap .metro-item {
+  width: 27%;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 1px 1px 2px #DDD;
+  border-radius: 4px;
+  padding: 1rem 0;
+}
+
+.metro-wrap .metro-item p {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.metro-wrap .metro-item b {
+  font-size: 3.2rem;
 }
 
 .fa-spinner {

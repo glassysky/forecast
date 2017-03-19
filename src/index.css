@@ -30,7 +30,7 @@ body {
 
 @media only screen and (-webkit-max-device-pixel-ratio: 2) {
   html {
-    font-size: 10px;
-    /*font-size: 20px;*/
+    /*font-size: 10px;*/
+    font-size: 20px;
   }
 }
