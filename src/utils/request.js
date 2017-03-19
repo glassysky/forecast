@@ -35,7 +35,7 @@ class Request {
       method,
       headers,
     };
-    if (isGet) requestInfo.body = body;
+    if (!isGet) requestInfo.body = body;
     fetch(url, requestInfo)
       .then(res => res.json())
       .then(res => success(res))
