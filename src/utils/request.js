@@ -31,11 +31,12 @@ class Request {
     const query = isGet ? generateQuery(data) : '';
     const headers = params.header || {};
     const url = `${this.prefix}${params.url}${query}`;
-    fetch(url, {
+    const requestInfo = {
       method,
       headers,
-      body,
-    })
+    };
+    if (isGet) requestInfo.body = body;
+    fetch(url, requestInfo)
       .then(res => res.json())
       .then(res => success(res))
       .catch(error => fail(error));
