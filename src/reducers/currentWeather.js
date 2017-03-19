@@ -5,6 +5,8 @@ const initialState = {
   conditionText: '',
   conditionCode: '',
   temperature: '',
+  windDir: '',
+  windLevel: '',
 };
 
 const currentWeather = (state = initialState, action) => {
@@ -18,6 +20,8 @@ const currentWeather = (state = initialState, action) => {
         APIstatus: action.data[0].status,
         conditionCode: data.cond.code,
         conditionText: data.cond.txt,
+        windDir: data.wind.dir,
+        windLevel: data.wind.sc,
         temperature: data.tmp,
       });
     default:

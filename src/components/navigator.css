@@ -8,6 +8,7 @@
   flex-direction: row;
   box-sizing: border-box;
   padding-top: 0.4rem;
+  background-color: #FFF;
 }
 
 .navigator-wrap li {

@@ -1,21 +1,8 @@
 .App {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  /*background-color: #222;*/
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-intro {
-  font-size: large;
 }
 
 .waiting-wrap {
@@ -25,13 +12,68 @@
   bottom: 0;
   left: 0;
   right: 0;
+  padding: 4.5rem 0 4.3rem
+}
+
+.waiting-body {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
+  background-color: #EEE;
 }
 
 .waiting-wrap span {
   font-size: 1.5rem;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 0 1.5rem;
+  margin: 1rem 0;
+}
+
+.location {
+  display: flex;
+  align-items: center;
+}
+
+.location span {
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.main-bar {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-bar .wi {
+  font-size: 15rem;
+}
+
+.weather-icon {
+  margin-bottom: 2.5rem;
+}
+
+.wi-icon {
+  margin-bottom: 4rem;
+}
+
+.date {
+  font-size: 1.2rem;
+}
+
+.weather-info p {
+  margin-bottom: 1rem;
+  font-size: 4rem;
+}
+
+.weather-info span {
+  font-size: 1.8rem;
 }
 
 .fa-spinner {

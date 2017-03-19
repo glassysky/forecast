@@ -25,6 +25,7 @@ body {
   height: 100%;
   box-sizing: border-box;  
   padding: 4.5rem 0 4.3rem;
+  background-color: #EEE;
 }
 
 @media only screen and (-webkit-max-device-pixel-ratio: 2) {
