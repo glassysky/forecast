@@ -123,7 +123,7 @@
 
 .rotate {
   font-size: 2.5rem;
-  animation-duration: 0.5s;
+  animation-duration: 1s;
   animation-iteration-count: infinite;
   animation-name: logo-spin;
   animation-timing-function: linear;
