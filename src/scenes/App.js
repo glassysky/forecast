@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
-import { setLocation } from '../actions/index';
+import { setLocation, getLocation } from '../actions/index';
 import getGeolocation from '../utils/getGeolocation';
 import fetchPost, { postType } from '../actions/network';
 import { getDate, getWeek } from '../utils/dateTranslate';
@@ -39,6 +39,21 @@ const fetchFunc = (postMethod, city) => {
   });
 };
 
+const allFetch = (postMethod, setMethod) => {
+  getGeolocation()
+    .then(
+      // store location
+      (loc) => {
+        setMethod(loc);
+        storage.setItem('location', loc);
+        return loc;
+      },
+    ).then(
+      // request weather
+      city => fetchFunc(postMethod, city),
+    );
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -52,20 +67,10 @@ class App extends Component {
   componentDidMount() {
     const postMethod = this.props.postWeather;
     const location = this.props.location || storage.getItem('location');
+
     if (!location) {
       // get location
-      getGeolocation()
-      .then(
-        // store location
-        (loc) => {
-          this.props.setLocation(loc);
-          storage.setItem('location', loc);
-          return loc;
-        },
-      ).then(
-        // request weather
-        city => fetchFunc(postMethod, city),
-      );
+      allFetch(postMethod, this.props.setLocation);
     } else {
       this.props.setLocation(location);
       fetchFunc(postMethod, location);
@@ -92,7 +97,8 @@ class App extends Component {
           <button
             className="refresh"
             onClick={() => {
-              fetchFunc(this.props.postWeather, location);
+              this.props.getLocation();
+              allFetch(this.props.postWeather, this.props.setLocation);
             }}
           >
             <i
@@ -143,6 +149,7 @@ class App extends Component {
 
 App.propTypes = {
   setLocation: PropTypes.func,
+  getLocation: PropTypes.func,
   postWeather: PropTypes.func,
   location: PropTypes.string,
   APIstatus: PropTypes.string,
@@ -154,7 +161,7 @@ App.propTypes = {
   humidity: PropTypes.string,
   precipitation: PropTypes.string,
   visibility: PropTypes.string,
-  isFetching: PropTypes.string,
+  isFetching: PropTypes.bool,
 };
 
 const mapStateToProps = state => ({
@@ -173,6 +180,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   setLocation: location => dispatch(setLocation(location)),
+  getLocation: () => dispatch(getLocation()),
   postWeather: location => dispatch(fetchPost(location)),
 });
 

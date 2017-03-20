@@ -16,6 +16,10 @@ const initialState = {
 const currentWeather = (state = initialState, action) => {
   let data;
   switch (action.type) {
+    case types.GET_GEO_LOCATION:
+      return Object.assign({}, state, {
+        isFetching: true,
+      });
     case types.CURRENT_WEATHER_REQUEST:
       return Object.assign({}, state, {
         isFetching: true,
