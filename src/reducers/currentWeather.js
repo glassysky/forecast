@@ -10,13 +10,16 @@ const initialState = {
   humidity: '',
   precipitation: '',
   visibility: '',
+  isFetching: false,
 };
 
 const currentWeather = (state = initialState, action) => {
   let data;
   switch (action.type) {
     case types.CURRENT_WEATHER_REQUEST:
-      return state;
+      return Object.assign({}, state, {
+        isFetching: true,
+      });
     case types.CURRENT_WEATHER_RECEIVE:
       data = action.data[0].now;
       return Object.assign({}, state, {
@@ -29,6 +32,7 @@ const currentWeather = (state = initialState, action) => {
         humidity: data.hum,
         precipitation: data.pcpn,
         visibility: data.vis,
+        isFetching: false,
       });
     default:
       return state;

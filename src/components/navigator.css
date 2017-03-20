@@ -9,7 +9,7 @@
   box-sizing: border-box;
   padding-top: 0.4rem;
   background-color: #FFF;
-  box-shadow: 0 -1px 1px #DDD;
+  box-shadow: 0 0 0.1rem #DDD;
 }
 
 .navigator-wrap li {

@@ -35,6 +35,16 @@
   margin: 1rem 0;
 }
 
+.top-bar button {
+  border: none;
+  background-color: inherit;
+  padding: 0;
+}
+
+.top-bar button:focus {
+  outline: none;
+}
+
 .location {
   display: flex;
   align-items: center;
@@ -89,8 +99,8 @@
 .metro-wrap .metro-item {
   width: 27%;
   background: rgba(255, 255, 255, 0.5);
-  box-shadow: 1px 1px 2px #DDD;
-  border-radius: 4px;
+  box-shadow: 0.1rem 0.1rem 0.2rem #DDD;
+  border-radius: 0.4rem;
   padding: 1rem 0;
 }
 
@@ -106,6 +116,14 @@
 .fa-spinner {
   font-size: 2.5rem;
   animation-duration: 1.4s;
+  animation-iteration-count: infinite;
+  animation-name: logo-spin;
+  animation-timing-function: linear;
+}
+
+.rotate {
+  font-size: 2.5rem;
+  animation-duration: 0.5s;
   animation-iteration-count: infinite;
   animation-name: logo-spin;
   animation-timing-function: linear;

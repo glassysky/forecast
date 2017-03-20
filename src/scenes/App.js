@@ -39,15 +39,6 @@ const fetchFunc = (postMethod, city) => {
   });
 };
 
-const refresh = () => {
-  console.log('screen width');
-  console.log(screen.width);
-  console.log('innerWidth');
-  console.log(window.innerWidth);
-  console.log('dpr');
-  console.log(window.devicePixelRatio);
-};
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -82,7 +73,10 @@ class App extends Component {
   }
   render() {
     const weatherInfo = weatherMap[this.props.conditionCode];
-    if (!this.props.location) {
+    const location = this.props.location;
+    const isFetching = this.props.isFetching;
+
+    if (!location) {
       return waitLocation();
     }
     if (this.props.APIstatus !== 'ok') {
@@ -93,11 +87,23 @@ class App extends Component {
         <div className="top-bar">
           <div className="location">
             <i className="fa fa-map-marker" aria-hidden="true" />
-            <span>{this.props.location}</span>
+            <span>{location}</span>
           </div>
-          <div className="refresh" onClick={refresh}>
-            <i className="fa fa-refresh" aria-hidden="true" />
-          </div>
+          <button
+            className="refresh"
+            onClick={() => {
+              fetchFunc(this.props.postWeather, location);
+            }}
+          >
+            <i
+              className={`
+                fa 
+                fa-refresh
+                ${isFetching ? 'rotate' : ''}
+              `}
+              aria-hidden="true"
+            />
+          </button>
         </div>
         <div className="main-bar">
           <div className="weather-icon">
@@ -148,6 +154,7 @@ App.propTypes = {
   humidity: PropTypes.string,
   precipitation: PropTypes.string,
   visibility: PropTypes.string,
+  isFetching: PropTypes.string,
 };
 
 const mapStateToProps = state => ({
@@ -161,6 +168,7 @@ const mapStateToProps = state => ({
   humidity: state.currentWeather.humidity,
   precipitation: state.currentWeather.precipitation,
   visibility: state.currentWeather.visibility,
+  isFetching: state.currentWeather.isFetching,
 });
 
 const mapDispatchToProps = dispatch => ({
