@@ -43,9 +43,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.date = new Date();
-    this.isNight = true;
+    this.isNight = false;
     const hour = this.date.getHours();
-    if (hour >= 18 && hour <= 6) {
+    if ((hour >= 18 && hour <= 24) || (hour >= 0 && hour <= 6)) {
       this.isNight = true;
     }
   }
