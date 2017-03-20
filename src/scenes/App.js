@@ -39,6 +39,15 @@ const fetchFunc = (postMethod, city) => {
   });
 };
 
+const refresh = () => {
+  console.log('screen width');
+  console.log(screen.width);
+  console.log('innerWidth');
+  console.log(window.innerWidth);
+  console.log('dpr');
+  console.log(window.devicePixelRatio);
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -86,7 +95,7 @@ class App extends Component {
             <i className="fa fa-map-marker" aria-hidden="true" />
             <span>{this.props.location}</span>
           </div>
-          <div className="refresh">
+          <div className="refresh" onClick={refresh}>
             <i className="fa fa-refresh" aria-hidden="true" />
           </div>
         </div>
