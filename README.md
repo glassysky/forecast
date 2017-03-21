@@ -12,13 +12,15 @@ The **Chrome** on Android and **Safari** on iOS providing these features to you.
 
 After adding the application to the main screen, you can use it as a native application!
 
+<iframe height=498 width=510 src="http://on5g3ylir.bkt.clouddn.com/Untitled.mov" frameborder=0 allowfullscreen></iframe>
+
 # Screenshot
 
 ![screenshot](http://on5g3ylir.bkt.clouddn.com/Slice.png)
 
 # Authorization
 
-The application needs your **Geolocation** Authorization.
+The application needs your mobile's **Geolocation** Authorization.
 
 # Development
 
@@ -44,6 +46,7 @@ $ npm run build
 # API Used
 
 [He Feng Weather](http://www.heweather.com/documents)
+
 [Baidu Map API](http://lbsyun.baidu.com/index.php?title=jspopular)
 
 # License
