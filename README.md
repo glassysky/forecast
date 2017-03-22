@@ -42,7 +42,7 @@ Ah, you almost there!
 
 After the step 1-3, you should be able to see the web application called 'Forecast' had been added to your home screen(just like an iOS app, right?), click the 'cloud' icon and enjoy the app!
 
-![step four](http://on5g3ylir.bkt.clouddn.com/step_four.PNG)
+![step four](http://on5g3ylir.bkt.clouddn.com/step_four.jpg)
 
 # Screenshot
 
