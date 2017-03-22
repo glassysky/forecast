@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import './App.css';
 import { setLocation, getLocation } from '../actions/index';
 import getGeolocation from '../utils/getGeolocation';
 import fetchPost, { postType } from '../actions/network';
 import { getDate, getWeek } from '../utils/dateTranslate';
 import storage from '../utils/LocalStorage';
 import weatherMap from '../constants/weatherMap';
+import './App.css';
 
 const waitLocation = () => (
   <div className="waiting-wrap">
