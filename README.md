@@ -1,12 +1,14 @@
 # Forecast
 
+![icon](http://on5g3ylir.bkt.clouddn.com/weatherIcon.png)
+
 A forecast HTML5 application. (Studying only)
 
 You can also get the [online version](http://glassysky.github.io/forecast/)
 
 # Suggestion(**important**)
 
-For a better **user experience**, You'd better **add the application to the main screen**.
+For a better **user experience**, You'd better **add the application to the home screen**.
 
 The **Chrome** on Android and **Safari** on iOS providing these features to you.
 
@@ -14,7 +16,7 @@ After adding the application to the main screen, you can use it as a native appl
 
 ![add to home screen](http://on5g3ylir.bkt.clouddn.com/480p.gif)
 
-You can do that like the gif above or following steps:
+You can do that as the gif above or following steps:
 
 （Tips: if you're using Chrome or other browsers, see this [tutorial](https://www.howtogeek.com/196087/how-to-add-websites-to-the-home-screen-on-any-smartphone-or-tablet/)
 
