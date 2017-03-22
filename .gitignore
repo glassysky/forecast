@@ -39,5 +39,8 @@ jspm_packages
 # Build files
 build
 
+# Vscode
+.vscode
+
 # Private test files
 public/test.html
