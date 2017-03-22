@@ -24,19 +24,19 @@ You can do that as the gif above or following steps:
 
 Open Safari/Chrome on your iOS/Android mobile and input the URL [https://glassysky.github.io/forecast/](https://glassysky.github.io/forecast/)
 
-![step one](http://on5g3ylir.bkt.clouddn.com/step_one.PNG)
+<img src="http://on5g3ylir.bkt.clouddn.com/step_one.PNG" alt="step one" width="250px" />
 
 ## Step Two
 
 At the bottom of your screen, you can see an icon like '↑', click this icon and go to the next step
 
-![step two](http://on5g3ylir.bkt.clouddn.com/step_two.PNG)
+<img src="http://on5g3ylir.bkt.clouddn.com/step_two.PNG" alt="step two" width="250px" />
 
 ## Step Three
 
 Then, click the button 'add to home screen'
 
-![step three](http://on5g3ylir.bkt.clouddn.com/step_three.PNG)
+<img src="http://on5g3ylir.bkt.clouddn.com/step_three.PNG" alt="step three" width="250px" />
 
 ## Step Four
 
@@ -44,11 +44,11 @@ Ah, you almost there!
 
 After the step 1-3, you should be able to see the web application called 'Forecast' had been added to your home screen(just like an iOS app, right?), click the 'cloud' icon and enjoy the app!
 
-![step four](http://on5g3ylir.bkt.clouddn.com/step_four.jpg)
+<img src="http://on5g3ylir.bkt.clouddn.com/step_four.jpg" alt="step four" width="250px" />
 
 # Screenshot
 
-![screenshot](http://on5g3ylir.bkt.clouddn.com/Slice.png)
+<img src="http://on5g3ylir.bkt.clouddn.com/Slice.png" alt="screenshot" width="250px" />
 
 # Authorization
 
