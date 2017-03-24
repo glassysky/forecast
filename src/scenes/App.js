@@ -6,6 +6,7 @@ import fetchPost, { postType } from '../actions/network';
 import { getDate, getWeek } from '../utils/dateTranslate';
 import storage from '../utils/LocalStorage';
 import weatherMap from '../constants/weatherMap';
+import Location from '../components/Location';
 import './App.css';
 
 const waitLocation = () => (
@@ -63,6 +64,7 @@ class App extends Component {
     if ((hour >= 18 && hour <= 24) || (hour >= 0 && hour <= 6)) {
       this.isNight = true;
     }
+    this._onFresh = this._onFresh.bind(this);
   }
   componentDidMount() {
     const postMethod = this.props.postWeather;
@@ -76,10 +78,17 @@ class App extends Component {
       fetchFunc(postMethod, location);
     }
   }
+  _onFresh() {
+    this.props.getLocation();
+    allFetch(this.props.postWeather, this.props.setLocation);
+  }
   render() {
-    const weatherInfo = weatherMap[this.props.conditionCode];
-    const location = this.props.location;
-    const isFetching = this.props.isFetching;
+    const {
+      conditionCode,
+      location,
+      isFetching,
+    } = this.props;
+    const weatherInfo = weatherMap[conditionCode];
 
     if (!location) {
       return waitLocation();
@@ -89,28 +98,11 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <div className="top-bar">
-          <div className="location">
-            <i className="fa fa-map-marker" aria-hidden="true" />
-            <span>{location}</span>
-          </div>
-          <button
-            className="refresh"
-            onClick={() => {
-              this.props.getLocation();
-              allFetch(this.props.postWeather, this.props.setLocation);
-            }}
-          >
-            <i
-              className={`
-                fa 
-                fa-refresh
-                ${isFetching ? 'rotate' : ''}
-              `}
-              aria-hidden="true"
-            />
-          </button>
-        </div>
+        <Location
+          location={location}
+          onRefreshClick={this._onFresh}
+          isFetching={isFetching}
+        />
         <div className="main-bar">
           <div className="weather-icon">
             <i
