@@ -14,13 +14,14 @@ const initialState = {
 
 const currentWeather = (state = initialState, action) => {
   let data;
+  let basic;
   switch (action.type) {
     case types.FORECAST_WEATHER_REQUEST:
       return Object.assign({}, state, {
         isFetching: true,
       });
     case types.FORECAST_WEAHTER_RECEIVE:
-      data = action.data[0].now;
+      data = action.data[0];
       console.log(data);
       return Object.assign({}, state, {
         APIstatus: action.data[0].status,

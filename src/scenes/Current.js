@@ -7,16 +7,6 @@ import weatherMap from '../constants/weatherMap';
 import Location from '../components/Location';
 import './Current.css';
 
-const waitLocation = () => (
-  <div className="waiting-wrap">
-    <div className="waiting-body">
-      <span>正在获取位置信息</span>
-      <i className="fa fa-spinner fa-3x fa-fw" />
-      <span className="sr-only">Loading...</span>
-    </div>
-  </div>
-);
-
 const waitWeather = () => (
   <div className="waiting-wrap">
     <div className="waiting-body">
@@ -50,26 +40,25 @@ class Current extends Component {
     this._onFresh = this._onFresh.bind(this);
   }
   componentDidMount() {
-    const postMethod = this.props.postWeather;
-    const location = this.props.location || storage.getItem('location');
-
-    fetchFunc(postMethod, location);
+    this._onFresh();
   }
   _onFresh() {
+    const postMethod = this.props.postWeather;
     const location = this.props.location || storage.getItem('location');
-    fetchFunc(this.props.postWeather, location);
+    fetchFunc(postMethod, location);
   }
   render() {
     const {
       conditionCode,
+      conditionText,
+      temperature,
+      windDir,
+      windLevel,
       location,
       isFetching,
     } = this.props;
     const weatherInfo = weatherMap[conditionCode];
 
-    if (!location) {
-      return waitLocation();
-    }
     if (this.props.APIstatus !== 'ok') {
       return waitWeather();
     }
@@ -93,8 +82,8 @@ class Current extends Component {
             </p>
           </div>
           <div className="weather-info">
-            <p>{`${this.props.conditionText} / ${this.props.temperature}℃`}</p>
-            <span>{`${this.props.windDir} ${this.props.windLevel}级`}</span>
+            <p>{`${conditionText} / ${temperature}℃`}</p>
+            <span>{`${windDir} ${windLevel.indexOf('-') > -1 ? `${windLevel}级` : windLevel}`}</span>
           </div>
         </div>
         <div className="metro-wrap">

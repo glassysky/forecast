@@ -3,8 +3,18 @@ import { connect } from 'react-redux';
 import Location from '../components/Location';
 import fetchPost, { postType } from '../actions/network';
 import storage from '../utils/LocalStorage';
-import getGeolocation from '../utils/getGeolocation';
 import './Forecast.css';
+
+const fetchFunc = (postMethod, city) => {
+  postMethod({
+    url: '/forecast',
+    type: postType.FORECAST,
+    post_option: 'GET',
+    data: {
+      city,
+    },
+  });
+};
 
 const TabItem = () => (
   <div>123</div>
@@ -13,23 +23,24 @@ const TabItem = () => (
 class Forecast extends Component {
   constructor(props) {
     super(props);
-    this._fetchData = this._fetchData.bind(this);
-  }
-  _fetchData() {
-    console.log(1);
-    this.props.postMethod('北京');
+    this._onFresh = this._onFresh.bind(this);
   }
   componentDidMount() {
+    this._onFresh();
+  }
+  _onFresh() {
+    const postMethod = this.props.postWeather;
     const location = this.props.location || storage.getItem('location');
-    if (!location) {
-
-    }
+    fetchFunc(postMethod, location);
   }
   render() {
+    const {
+      location,
+    } = this.props;
     return (
       <div className="forecast">
         <Location
-          location={'北京'}
+          location={location}
           isFetching
           onRefreshClick={() => {}}
         />
@@ -45,6 +56,7 @@ class Forecast extends Component {
 
 Forecast.propTypes = {
   location: PropTypes.string,
+  postWeather: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
@@ -52,7 +64,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  postMethod: location => dispatch(fetchPost(location)),
+  postWeather: location => dispatch(fetchPost(location)),
 });
 
 export default connect(

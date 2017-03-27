@@ -34,7 +34,7 @@ const receivePosts = (info, data) => {
       };
     case postType.FORECAST:
       return {
-        type: types.FORECAST_WEATHER_RECEIVE,
+        type: types.FORECAST_WEAHTER_RECEIVE,
         data,
       };
     default:
