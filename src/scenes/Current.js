@@ -1,13 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { setLocation, getLocation } from '../actions/index';
-import getGeolocation from '../utils/getGeolocation';
 import fetchPost, { postType } from '../actions/network';
 import { getDate, getWeek } from '../utils/dateTranslate';
 import storage from '../utils/LocalStorage';
 import weatherMap from '../constants/weatherMap';
 import Location from '../components/Location';
-import './App.css';
+import './Current.css';
 
 const waitLocation = () => (
   <div className="waiting-wrap">
@@ -40,21 +38,6 @@ const fetchFunc = (postMethod, city) => {
   });
 };
 
-const allFetch = (postMethod, setMethod) => {
-  getGeolocation()
-    .then(
-      // store location
-      (loc) => {
-        setMethod(loc);
-        storage.setItem('location', loc);
-        return loc;
-      },
-    ).then(
-      // request weather
-      city => fetchFunc(postMethod, city),
-    );
-};
-
 class Current extends Component {
   constructor(props) {
     super(props);
@@ -70,17 +53,11 @@ class Current extends Component {
     const postMethod = this.props.postWeather;
     const location = this.props.location || storage.getItem('location');
 
-    if (!location) {
-      // get location
-      allFetch(postMethod, this.props.setLocation);
-    } else {
-      this.props.setLocation(location);
-      fetchFunc(postMethod, location);
-    }
+    fetchFunc(postMethod, location);
   }
   _onFresh() {
-    this.props.getLocation();
-    allFetch(this.props.postWeather, this.props.setLocation);
+    const location = this.props.location || storage.getItem('location');
+    fetchFunc(this.props.postWeather, location);
   }
   render() {
     const {
@@ -140,8 +117,6 @@ class Current extends Component {
 }
 
 Current.propTypes = {
-  setLocation: PropTypes.func,
-  getLocation: PropTypes.func,
   postWeather: PropTypes.func,
   location: PropTypes.string,
   APIstatus: PropTypes.string,
@@ -171,8 +146,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setLocation: location => dispatch(setLocation(location)),
-  getLocation: () => dispatch(getLocation()),
   postWeather: location => dispatch(fetchPost(location)),
 });
 
