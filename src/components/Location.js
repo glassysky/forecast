@@ -2,6 +2,7 @@ import React, {
   Component,
   PropTypes,
 } from 'react';
+import './Location.css';
 
 class Location extends Component {
   render() {
@@ -11,30 +12,39 @@ class Location extends Component {
           <i className="fa fa-map-marker" aria-hidden="true" />
           <span>{this.props.location}</span>
         </div>
-        <button
-          className="refresh"
-          onClick={() => {
-            this.props.onRefreshClick();
-          }}
-        >
-          <i
-            className={`
-              fa 
-              fa-refresh
-              ${this.props.isFetching ? 'rotate' : ''}
-            `}
-            aria-hidden="true"
-          />
-        </button>
+        {
+          this.props.onRefreshClick ?
+            <button
+              className="refresh"
+              onClick={() => {
+                this.props.onRefreshClick();
+              }}
+            >
+              <i
+                className={`
+                  fa 
+                  fa-refresh
+                  ${this.props.isFetching ? 'rotate' : ''}
+                `}
+                aria-hidden="true"
+              />
+            </button>
+            :
+            null
+        }
       </div>
     );
   }
 }
 
+Location.defaultProps = {
+  onRefreshClick: () => {},
+};
+
 Location.propTypes = {
-  location: PropTypes.string,
+  location: PropTypes.string.isRequired,
   onRefreshClick: PropTypes.func,
-  isFetching: PropTypes.bool,
+  isFetching: PropTypes.bool.isRequired,
 };
 
 export default Location;
