@@ -1,0 +1,93 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-align: center;
+}
+
+.waiting-wrap {
+  position: absolute;
+  z-index: 999;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 4.5rem 0 4.3rem
+}
+
+.waiting-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: #EEE;
+}
+
+.waiting-wrap span {
+  font-size: 1.5rem;
+}
+
+.main-bar {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.main-bar .wi {
+  font-size: 12rem;
+}
+
+.weather-icon {
+  margin-bottom: 2.5rem;
+}
+
+.wi-icon {
+  margin-bottom: 4rem;
+}
+
+.date {
+  font-size: 1.2rem;
+}
+
+.weather-info p {
+  margin-bottom: 1rem;
+  font-size: 4rem;
+}
+
+.weather-info span {
+  font-size: 1.8rem;
+}
+
+.metro-wrap {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 2rem;
+  margin-bottom: 2rem;
+}
+
+.metro-wrap .metro-item {
+  width: 27%;
+  background: rgba(255, 255, 255, 0.5);
+  box-shadow: 0.1rem 0.1rem 0.2rem #DDD;
+  border-radius: 0.4rem;
+  padding: 1rem 0;
+}
+
+.metro-wrap .metro-item p {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+}
+
+.metro-wrap .metro-item b {
+  font-size: 3.2rem;
+}
+
+.fa-spinner {
+  font-size: 2.5rem;
+  animation-duration: 1.4s;
+  animation-iteration-count: infinite;
+  animation-name: logo-spin;
+  animation-timing-function: linear;
+}

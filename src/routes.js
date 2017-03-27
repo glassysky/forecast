@@ -1,4 +1,4 @@
-import App from './scenes/App';
+import Current from './scenes/Current';
 import Forecast from './scenes/Forecast';
 import Life from './scenes/Life';
 import Disaster from './scenes/Disaster';
@@ -7,7 +7,7 @@ import Attraction from './scenes/Attraction';
 const routes = [
   {
     path: '/forecast/',
-    component: App,
+    component: Current,
     exact: true,
   },
   {

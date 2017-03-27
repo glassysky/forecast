@@ -9,7 +9,8 @@ module.exports = {
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         "react/prefer-stateless-function": [0],
         "react/jsx-tag-spacing": [0],
-        "no-underscore-dangle": ["error", { "allowAfterThis": true }]
+        "no-underscore-dangle": ["error", { "allowAfterThis": true }],
+        "react/forbid-prop-types": [0]
     },
     "globals": {
         "window": true,

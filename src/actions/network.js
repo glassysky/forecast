@@ -5,6 +5,7 @@ let requestInstance = null;
 
 export const postType = {
   CURRENT_WEATHER: 'CURRENT_WEATHER',
+  FORECAST: 'FORECAST',
 };
 
 const requestPosts = (info) => {
@@ -12,6 +13,10 @@ const requestPosts = (info) => {
     case postType.CURRENT_WEATHER:
       return {
         type: types.CURRENT_WEATHER_REQUEST,
+      };
+    case postType.FORECAST:
+      return {
+        type: types.FORECAST_WEATHER_REQUEST,
       };
     default:
       return {
@@ -25,6 +30,11 @@ const receivePosts = (info, data) => {
     case postType.CURRENT_WEATHER:
       return {
         type: types.CURRENT_WEATHER_RECEIVE,
+        data,
+      };
+    case postType.FORECAST:
+      return {
+        type: types.FORECAST_WEATHER_RECEIVE,
         data,
       };
     default:
