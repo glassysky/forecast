@@ -1,8 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import shortid from 'shortid';
 import Location from '../components/Location';
 import fetchPost, { postType } from '../actions/network';
+import {
+  visibleAllItems,
+  visibleSingleItem,
+} from '../actions/index';
 import storage from '../utils/LocalStorage';
+import ForecastItem from '../components/ForecastItem';
 import './Forecast.css';
 
 const waitWeather = () => (
@@ -26,14 +32,11 @@ const fetchFunc = (postMethod, city) => {
   });
 };
 
-const TabItem = () => (
-  <div>123</div>
-);
-
 class Forecast extends Component {
   constructor(props) {
     super(props);
     this._onFresh = this._onFresh.bind(this);
+    this._toggleItem = this._toggleItem.bind(this);
   }
   componentDidMount() {
     this._onFresh();
@@ -43,12 +46,30 @@ class Forecast extends Component {
     const location = this.props.location || storage.getItem('location');
     fetchFunc(postMethod, location);
   }
+  _toggleItem(index) {
+    const {
+      visibleItems,
+      hideAll,
+      showAll,
+      showSingle,
+      isExtended,
+    } = this.props;
+    return () => {
+      if (visibleItems[index] && isExtended) {
+        showAll();
+      } else {
+        hideAll();
+        showSingle(index);
+      }
+    };
+  }
   render() {
     const {
       location,
       forecast,
       isFetching,
       APIstatus,
+      visibleItems,
     } = this.props;
     if (APIstatus !== 'ok') {
       return waitWeather();
@@ -61,14 +82,30 @@ class Forecast extends Component {
           onRefreshClick={() => {}}
         />
         <div className="tabs">
-          {
-            forecast.map((item, index) => (
-              <TabItem
-                key={index}
-                data={item}
-              />
-            ))
-          }
+          <div className="pos-wrap">
+            {
+              forecast.map((item, index) => {
+                if (visibleItems[index]) {
+                  return (
+                    <ForecastItem
+                      key={shortid.generate()}
+                      data={item}
+                      click={this._toggleItem(index)}
+                      visible
+                    />
+                  );
+                }
+                return (
+                  <ForecastItem
+                    key={shortid.generate()}
+                    data={item}
+                    click={this._toggleItem(index)}
+                    visible={false}
+                  />
+                );
+              })
+            }
+          </div>
         </div>
       </div>
     );
@@ -81,6 +118,11 @@ Forecast.propTypes = {
   isFetching: PropTypes.bool,
   forecast: PropTypes.array,
   APIstatus: PropTypes.string,
+  visibleItems: PropTypes.array,
+  hideAll: PropTypes.func,
+  showAll: PropTypes.func,
+  showSingle: PropTypes.func,
+  isExtended: PropTypes.bool,
 };
 
 const mapStateToProps = state => ({
@@ -88,10 +130,16 @@ const mapStateToProps = state => ({
   isFetching: state.forecast.isFetching,
   forecast: state.forecast.forecast,
   APIstatus: state.forecast.APIstatus,
+  visibleItems: state.forecast.visibleItems,
+  isExtended: state.forecast.isExtended,
 });
 
 const mapDispatchToProps = dispatch => ({
   postWeather: location => dispatch(fetchPost(location)),
+  showAll: () => dispatch(visibleAllItems(1)),
+  hideAll: () => dispatch(visibleAllItems(0)),
+  showSingle: index => dispatch(visibleSingleItem(index, 1)),
+  hideSingle: index => dispatch(visibleSingleItem(index, 0)),
 });
 
 export default connect(

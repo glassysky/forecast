@@ -9,4 +9,67 @@
 
 .tabs {
   flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 1.5rem 1rem;
+}
+
+.pos-wrap {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+}
+
+.item-wrap {
+  flex: 1;
+  background-color: #FAFAFA;
+  margin: 1rem 0; 
+}
+
+.item-show {
+
+}
+
+.item-hidden {
+  visibility: hidden;
+}
+
+.head-panel {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  box-sizing: border-box;
+  border: 0.05rem solid #DDD;
+  box-shadow: 0.1rem 0.1rem 0.2rem #DDD;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.wi.wi-icon {
+  font-size: 9rem;
+  margin-bottom: 0;
+}
+
+.main-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  height: 100%;
+  font-weight: 400;
+}
+
+.main-info span {
+  font-size: 1.5rem;
+}
+
+.main-temp {
+  padding: 0.5rem 0;
+  font-size: 4rem;
+}
+
+.main-cond-txt {
+  font-size: 2.5rem;
 }

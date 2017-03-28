@@ -10,7 +10,8 @@ module.exports = {
         "react/prefer-stateless-function": [0],
         "react/jsx-tag-spacing": [0],
         "no-underscore-dangle": ["error", { "allowAfterThis": true }],
-        "react/forbid-prop-types": [0]
+        "react/forbid-prop-types": [0],
+        "jsx-a11y/no-static-element-interactions": [0],
     },
     "globals": {
         "window": true,

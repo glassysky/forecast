@@ -5,6 +5,9 @@ import { getDate, getWeek } from '../utils/dateTranslate';
 import storage from '../utils/LocalStorage';
 import weatherMap from '../constants/weatherMap';
 import Location from '../components/Location';
+import {
+  isNight,
+} from '../utils/common';
 import './Current.css';
 
 const waitWeather = () => (
@@ -34,9 +37,7 @@ class Current extends Component {
     this.date = new Date();
     this.isNight = false;
     const hour = this.date.getHours();
-    if ((hour >= 18 && hour <= 24) || (hour >= 0 && hour <= 6)) {
-      this.isNight = true;
-    }
+    this.isNight = isNight(hour);
     this._onFresh = this._onFresh.bind(this);
   }
   componentDidMount() {
