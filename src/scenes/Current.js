@@ -56,10 +56,11 @@ class Current extends Component {
       windLevel,
       location,
       isFetching,
+      APIstatus,
     } = this.props;
     const weatherInfo = weatherMap[conditionCode];
 
-    if (this.props.APIstatus !== 'ok') {
+    if (APIstatus !== 'ok') {
       return waitWeather();
     }
     return (

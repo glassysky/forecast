@@ -2,19 +2,14 @@ import * as types from '../constants/ActionTypes';
 
 const initialState = {
   APIstatus: '',
-  conditionText: '',
-  conditionCode: '',
-  maxTemp: '',
-  minTemp: '',
-  windDir: '',
-  windLevel: '',
-  precipitation: '',
-  isFetching: false,
+  forecast: [],
+  longitude: '',
+  latitude: '',
+  isFetching: true,
 };
 
 const currentWeather = (state = initialState, action) => {
   let data;
-  let basic;
   switch (action.type) {
     case types.FORECAST_WEATHER_REQUEST:
       return Object.assign({}, state, {
@@ -25,14 +20,9 @@ const currentWeather = (state = initialState, action) => {
       console.log(data);
       return Object.assign({}, state, {
         APIstatus: action.data[0].status,
-        conditionCode: data.cond.code,
-        conditionText: data.cond.txt,
-        windDir: data.wind.dir,
-        windLevel: data.wind.sc,
-        temperature: data.tmp,
-        humidity: data.hum,
-        precipitation: data.pcpn,
-        visibility: data.vis,
+        longitude: data.basic.lon,
+        latitude: data.basic.lat,
+        forecast: data.daily_forecast,
         isFetching: false,
       });
     default:

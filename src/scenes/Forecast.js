@@ -5,6 +5,16 @@ import fetchPost, { postType } from '../actions/network';
 import storage from '../utils/LocalStorage';
 import './Forecast.css';
 
+const waitWeather = () => (
+  <div className="waiting-wrap">
+    <div className="waiting-body">
+      <span>正在获取天气信息</span>
+      <i className="fa fa-spinner fa-fw" />
+      <span className="sr-only">Loading...</span>
+    </div>
+  </div>
+);
+
 const fetchFunc = (postMethod, city) => {
   postMethod({
     url: '/forecast',
@@ -36,17 +46,28 @@ class Forecast extends Component {
   render() {
     const {
       location,
+      forecast,
+      isFetching,
+      APIstatus,
     } = this.props;
+    if (APIstatus !== 'ok') {
+      return waitWeather();
+    }
     return (
       <div className="forecast">
         <Location
           location={location}
-          isFetching
+          isFetching={isFetching}
           onRefreshClick={() => {}}
         />
         <div className="tabs">
           {
-
+            forecast.map((item, index) => (
+              <TabItem
+                key={index}
+                data={item}
+              />
+            ))
           }
         </div>
       </div>
@@ -57,10 +78,16 @@ class Forecast extends Component {
 Forecast.propTypes = {
   location: PropTypes.string,
   postWeather: PropTypes.func,
+  isFetching: PropTypes.bool,
+  forecast: PropTypes.array,
+  APIstatus: PropTypes.string,
 };
 
 const mapStateToProps = state => ({
   location: state.common.location,
+  isFetching: state.forecast.isFetching,
+  forecast: state.forecast.forecast,
+  APIstatus: state.forecast.APIstatus,
 });
 
 const mapDispatchToProps = dispatch => ({
