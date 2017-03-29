@@ -70,6 +70,7 @@ class Forecast extends Component {
       isFetching,
       APIstatus,
       visibleItems,
+      isExtended,
     } = this.props;
     if (APIstatus !== 'ok') {
       return waitWeather();
@@ -84,26 +85,15 @@ class Forecast extends Component {
         <div className="tabs">
           <div className="pos-wrap">
             {
-              forecast.map((item, index) => {
-                if (visibleItems[index]) {
-                  return (
-                    <ForecastItem
-                      key={shortid.generate()}
-                      data={item}
-                      click={this._toggleItem(index)}
-                      visible
-                    />
-                  );
-                }
-                return (
-                  <ForecastItem
-                    key={shortid.generate()}
-                    data={item}
-                    click={this._toggleItem(index)}
-                    visible={false}
-                  />
-                );
-              })
+              forecast.map((item, index) => (
+                <ForecastItem
+                  key={shortid.generate()}
+                  data={item}
+                  click={this._toggleItem(index)}
+                  visible={visibleItems[index] ? true : false}
+                  actived={isExtended && visibleItems[index] ? true : false}
+                />
+              ))
             }
           </div>
         </div>

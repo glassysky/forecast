@@ -12,6 +12,7 @@ module.exports = {
         "no-underscore-dangle": ["error", { "allowAfterThis": true }],
         "react/forbid-prop-types": [0],
         "jsx-a11y/no-static-element-interactions": [0],
+        "no-unneeded-ternary": [0],
     },
     "globals": {
         "window": true,
