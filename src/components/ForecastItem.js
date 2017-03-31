@@ -16,8 +16,6 @@ class ForecastItem extends Component {
       <div
         className={`
           item-wrap 
-          ${visible ? 'item-show' : 'item-hidden'}
-          ${actived ? 'item-actived' : ''}
         `}
         onClick={click}
       >
@@ -38,8 +36,7 @@ class ForecastItem extends Component {
         </div>
         <div
           className={`
-            "body-panel"
-            ${actived ? 'body-show' : 'body-hidden'}
+            body-panel
           `}
         >
           <div className="left-panel">

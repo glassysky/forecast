@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import shortid from 'shortid';
 import Location from '../components/Location';
 import fetchPost, { postType } from '../actions/network';
@@ -75,6 +76,15 @@ class Forecast extends Component {
     if (APIstatus !== 'ok') {
       return waitWeather();
     }
+    const forecasts = forecast.map((item, index) => (
+      <ForecastItem
+        key={shortid.generate()}
+        data={item}
+        click={this._toggleItem(index)}
+        visible={visibleItems[index] ? true : false}
+        actived={isExtended && visibleItems[index] ? true : false}
+      />
+    ));
     return (
       <div className="forecast">
         <Location
@@ -84,17 +94,7 @@ class Forecast extends Component {
         />
         <div className="tabs">
           <div className="pos-wrap">
-            {
-              forecast.map((item, index) => (
-                <ForecastItem
-                  key={shortid.generate()}
-                  data={item}
-                  click={this._toggleItem(index)}
-                  visible={visibleItems[index] ? true : false}
-                  actived={isExtended && visibleItems[index] ? true : false}
-                />
-              ))
-            }
+            {forecasts}
           </div>
         </div>
       </div>
