@@ -3,36 +3,51 @@ import weatherMap from '../constants/weatherMap';
 import { minus2chinese } from '../utils/dateTranslate';
 import infoMap from '../constants/forecastMap';
 import './ForecastItem.css';
+import format from '../utils/forecastMap';
 
 const GroupPanel = (props) => {
   const {
     obj,
+    type,
   } = props;
   const keys = Object.keys(obj);
+  const formType = type || 'left';
   return (
     <div className="group-panel">
       {
-        keys.map(item => <p key={item}>{obj[item].label}</p>)
+        keys.map(item =>
+          <p key={item}>
+            {
+              formType === 'left' ?
+                obj[item].label
+                :
+                obj[item].value
+            }
+          </p>,
+        )
       }
     </div>
   );
 };
 
-const LeftPanel = (props) => {
+const TablePanel = (props) => {
   const {
     info,
+    type,
   } = props;
   const keys = Object.keys(info);
+  const formType = type || 'left';
   return (
-    <div className="left-panel">
-      {keys.map(item => <GroupPanel key={item} obj={info[item]} />)}
+    <div className={`${formType}-panel`}>
+      {keys.map(
+        item =>
+          <GroupPanel
+            key={item}
+            obj={info[item]}
+            type={formType}
+          />,
+      )}
     </div>
-  );
-};
-
-const RightPanel = () => {
-  return (
-    <div></div>
   );
 };
 
@@ -40,11 +55,12 @@ class ForecastItem extends Component {
   render() {
     const {
       data,
-      visible,
-      actived,
       click,
     } = this.props;
     const weatherInfo = weatherMap[data.cond.code_d];
+    if (data) {
+      this.format = format(data);
+    }
     return (
       <div
         className={`
@@ -72,15 +88,14 @@ class ForecastItem extends Component {
             body-panel
           `}
         >
-          <LeftPanel
+          <TablePanel
             info={infoMap}
+            type={'left'}
           />
-          <div className="right-panel">
-            <div>
-              <p>23.1111</p>
-              <p>543.33333</p>
-            </div>
-          </div>
+          <TablePanel
+            info={infoMap}
+            type={'right'}
+          />
         </div>
       </div>
     );

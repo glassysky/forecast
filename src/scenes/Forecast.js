@@ -72,6 +72,8 @@ class Forecast extends Component {
       APIstatus,
       visibleItems,
       isExtended,
+      longitude,
+      latitude,
     } = this.props;
     if (APIstatus !== 'ok') {
       return waitWeather();
@@ -79,7 +81,12 @@ class Forecast extends Component {
     const forecasts = forecast.map((item, index) => (
       <ForecastItem
         key={shortid.generate()}
-        data={item}
+        data={
+          Object.assign({}, item, {
+            latitude,
+            longitude,
+          })
+        }
         click={this._toggleItem(index)}
         visible={visibleItems[index] ? true : false}
         actived={isExtended && visibleItems[index] ? true : false}
@@ -113,6 +120,8 @@ Forecast.propTypes = {
   showAll: PropTypes.func,
   showSingle: PropTypes.func,
   isExtended: PropTypes.bool,
+  longitude: PropTypes.string,
+  latitude: PropTypes.string,
 };
 
 const mapStateToProps = state => ({
@@ -122,6 +131,8 @@ const mapStateToProps = state => ({
   APIstatus: state.forecast.APIstatus,
   visibleItems: state.forecast.visibleItems,
   isExtended: state.forecast.isExtended,
+  longitude: state.forecast.longitude,
+  latitude: state.forecast.latitude,
 });
 
 const mapDispatchToProps = dispatch => ({
