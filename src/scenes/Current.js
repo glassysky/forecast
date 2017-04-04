@@ -66,11 +66,13 @@ class Current extends Component {
     }
     return (
       <div className="App">
-        <Location
-          location={location}
-          onRefreshClick={this._onFresh}
-          isFetching={isFetching}
-        />
+        <div className="location-wrap">
+          <Location
+            location={location}
+            onRefreshClick={this._onFresh}
+            isFetching={isFetching}
+          />
+        </div>
         <div className="main-bar">
           <div className="weather-icon">
             <i

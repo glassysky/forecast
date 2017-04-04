@@ -3,6 +3,7 @@
   flex-direction: column;
   height: 100%;
   text-align: center;
+  position: relative;
 }
 
 .waiting-wrap {
@@ -90,4 +91,10 @@
   animation-iteration-count: infinite;
   animation-name: logo-spin;
   animation-timing-function: linear;
+}
+
+.location-wrap {
+  position: absolute;
+  top: 0;
+  width: 100%;
 }

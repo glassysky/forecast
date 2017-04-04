@@ -94,11 +94,13 @@ class Forecast extends Component {
     ));
     return (
       <div className="forecast">
-        <Location
-          location={location}
-          isFetching={isFetching}
-          onRefreshClick={() => {}}
-        />
+        <div className="location-wrap">
+          <Location
+            location={location}
+            isFetching={isFetching}
+            onRefreshClick={() => {}}
+          />
+        </div>
         <div className="tabs">
           <div className="pos-wrap">
             {forecasts}
