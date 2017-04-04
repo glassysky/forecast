@@ -15,8 +15,8 @@ const getGeolocation = () =>
         resolve(addComp.city.replace(/市/, ''));
       });
     };
-    const onError = () => {
-      reject();
+    const onError = (e) => {
+      reject(e);
     };
 
     navigator.geolocation.getCurrentPosition(onSuccess, onError);

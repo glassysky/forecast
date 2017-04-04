@@ -58,15 +58,4 @@ const infoMap = {
   },
 };
 
-// const format = (obj, lon, lat) => {
-//   const group1 = infoMap.group1;
-//   const group2 = infoMap.group2;
-//   const group3 = infoMap.group3;
-//   const group4 = infoMap.group4;
-//   const group5 = infoMap.group5;
-
-//   group1.longitude.value = lon;
-//   group1.latitude.value = lat;
-// };
-
 export default infoMap;
