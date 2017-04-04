@@ -1,7 +1,40 @@
 import React, { Component, PropTypes } from 'react';
 import weatherMap from '../constants/weatherMap';
 import { minus2chinese } from '../utils/dateTranslate';
+import infoMap from '../constants/forecastMap';
 import './ForecastItem.css';
+
+const GroupPanel = (props) => {
+  const {
+    obj,
+  } = props;
+  const keys = Object.keys(obj);
+  return (
+    <div className="group-panel">
+      {
+        keys.map(item => <p key={item}>{obj[item].label}</p>)
+      }
+    </div>
+  );
+};
+
+const LeftPanel = (props) => {
+  const {
+    info,
+  } = props;
+  const keys = Object.keys(info);
+  return (
+    <div className="left-panel">
+      {keys.map(item => <GroupPanel key={item} obj={info[item]} />)}
+    </div>
+  );
+};
+
+const RightPanel = () => {
+  return (
+    <div></div>
+  );
+};
 
 class ForecastItem extends Component {
   render() {
@@ -39,12 +72,9 @@ class ForecastItem extends Component {
             body-panel
           `}
         >
-          <div className="left-panel">
-            <div>
-              <p>城市经度：</p>
-              <p>城市纬度：</p>
-            </div>
-          </div>
+          <LeftPanel
+            info={infoMap}
+          />
           <div className="right-panel">
             <div>
               <p>23.1111</p>

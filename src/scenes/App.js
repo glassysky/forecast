@@ -25,7 +25,19 @@ const waitLocation = () => (
   </div>
 );
 
+const locateFail = () => (
+  <div className="waiting-wrap">
+    <div className="waiting-body">
+      <span>获取位置信息失败</span>
+    </div>
+  </div>
+);
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.waitScene = this.waitScene.bind(this);
+  }
   componentDidMount() {
     const location = this.props.location || storage.getItem('location');
     if (!location) {
@@ -34,10 +46,31 @@ class App extends Component {
         (loc) => {
           this.props.setLocation(loc);
         },
+      )
+      .catch(
+        () => {
+          this.props.setLocation('fail');
+        },
       );
     } else {
       this.props.setLocation(location);
     }
+  }
+  waitScene() {
+    // if (!this.props.location) {
+    //   return waitLocation();
+    // }
+    if (this.props.location && this.props.location === 'fail') {
+      return locateFail();
+    }
+    if (this.props.location && this.props.location !== 'fail') {
+      return (
+        routes.map((route, i) => (
+          <RouteWithSubRoutes key={i.toString()} {...route} />
+        ))
+      );
+    }
+    return waitLocation();
   }
   render() {
     return (
@@ -45,12 +78,7 @@ class App extends Component {
         <div className="root-wrap">
           <Header />
           {
-            this.props.location ?
-              routes.map((route, i) => (
-                <RouteWithSubRoutes key={i.toString()} {...route} />
-              ))
-              :
-              waitLocation()
+            this.waitScene()
           }
           <Navigator />
         </div>
