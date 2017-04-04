@@ -15,7 +15,10 @@ body {
   font-family: sans-serif;
   /*字体抗锯齿*/
   -webkit-font-smoothing: antialiased;
+  /*iOS 滚动优化*/
   -webkit-overflow-scrolling: touch;
+  /*禁止用户选择页面文字*/
+  user-select:none；
 }
 
 #root {
