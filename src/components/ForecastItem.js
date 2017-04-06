@@ -21,7 +21,7 @@ const GroupPanel = (props) => {
               formType === 'left' ?
                 obj[item].label
                 :
-                obj[item].value
+                obj[item].value + (obj[item].unit || '')
             }
           </p>,
         )
