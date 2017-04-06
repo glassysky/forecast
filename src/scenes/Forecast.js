@@ -97,7 +97,7 @@ class Forecast extends Component {
           <Location
             location={location}
             isFetching={isFetching}
-            onRefreshClick={() => {}}
+            onRefreshClick={this._onFresh}
           />
         </div>
         <div className="tabs">
