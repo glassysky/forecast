@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import shortid from 'shortid';
 import Location from '../components/Location';
 import fetchPost, { postType } from '../actions/network';
