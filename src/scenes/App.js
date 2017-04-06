@@ -49,7 +49,11 @@ class App extends Component {
       )
       .catch(
         () => {
-          this.props.setLocation('fail');
+          if (process.env.NODE_ENV === 'development') {
+            this.props.setLocation('南京');
+          } else {
+            this.props.setLocation('fail');
+          }
         },
       );
     } else {
